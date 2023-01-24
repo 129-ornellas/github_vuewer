@@ -1,7 +1,9 @@
 <template>
   <v-container>
     <GithubRepo @reposelected="onRepoSelected"/>
+    <h2>Repositório</h2>
     <GithubContent :repo="repo"/>
+    <h2>Issues</h2>
     <GithubIssues :repo="repo"/>
   </v-container>
 </template>

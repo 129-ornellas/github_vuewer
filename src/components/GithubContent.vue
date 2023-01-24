@@ -7,8 +7,7 @@
               <template v-slot:default>
                 <thead>
                     <tr>
-                        <th class="text-left">Arquivo/Pasta</th>
-                        <th class="text-left">Title</th>
+                        <th class="text-left">Arquivos</th>
                     </tr>
                 </thead>
                 <tbody>
