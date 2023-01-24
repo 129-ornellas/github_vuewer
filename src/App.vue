@@ -5,7 +5,7 @@
       color="orange"
     >
       <div class="d-flex align-center">
-        <v-toolbar-title>Github Vuewer do Marquin</v-toolbar-title>
+        <v-toolbar-title>Github Vuewer do Gelo</v-toolbar-title>
       </div>
 
       <v-spacer></v-spacer>
