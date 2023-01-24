@@ -14,7 +14,7 @@
                   <tr v-for="content in contents" :key="content.number">
                     <td>{{ content.name }}</td>
                     <td v-if="content.type == 'dir'"><v-btn @click="abreDir(content)">abra</v-btn></td>
-                  </tr>
+                </tr>
                 </tbody>
               </template>
           </v-simple-table>
@@ -26,6 +26,9 @@
           <v-btn color="primary" v-if="temmais" @click="listaContent">MAIS</v-btn>
         </v-col>
       </v-row>
+      <v-btn v-if="novoContent.length > 0" class="mb-5" @click="voltarDir">
+        Voltar
+      </v-btn>
     </div>
   </template>
   
@@ -41,6 +44,7 @@
         loading: false,
         temmais: false,
         currentPage: 1,
+        novoContent: []
       }),
       methods: {
         async listaContent(){
@@ -49,27 +53,33 @@
           this.loading = false
         },
         async abreDir(content){
+            let caminho = content.path
             this.loading = true
-            this.diretorio = await api.abreDir(this.repo.owner.login, this.repo.name, content.name)
+            this.contents = await api.abreDir(this.repo.owner.login, this.repo.name, caminho)
+            this.novoContent.push(caminho)
             this.loading = false
-            this.contents = []
-            this.contests.push('21','45')
-        }
+        },
+        async voltarDir() {
+            this.loading = true;
+            this.novoContent.pop();
+            let antigoContent =
+                this.novoContent.length == 1 ? this.novoContent[0] : this.novoContent[-1];
+            if (antigoContent == undefined)
+                antigoContent = ''
+            this.contents = await api.abreDir(
+              this.repo.owner.login,
+              this.repo.name,
+              antigoContent
+            );
+            this.loading = false;
+        }       
       },
       watch: {
         repo(){
-          this.content = []
-          if (this.repo) {
-            this.temmais = false
-            this.currentPage = 1
+            this.novoContent = []
             this.listaContent()
-          } else {
-            this.content = []
-            this.temmais = false
-            this.currentPage = 1
           }
         }
       }
-    }
   </script>
   

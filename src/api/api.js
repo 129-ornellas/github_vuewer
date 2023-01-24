@@ -14,7 +14,7 @@ async function fetch_all_pages(url){
     }
     return result
 }
-
+let pathUrl = null
 export const api = {
     async search_users(searchstring){
         const url = `https://api.github.com/search/users?q=${searchstring}`
@@ -38,8 +38,10 @@ export const api = {
         return await response.json()
     },
     async abreDir(owner,name, diretorio){
-        const url = `https://api.github.com/repos/${owner}/${name}/contents/${diretorio}`
-        const response = await fetch(url)
-        return await response.json()
+        const url = `https://api.github.com/repos/${owner}/${name}/contents/${diretorio}`;
+        const response = await fetch(url);
+        return await response.json();
+        },
+    async voltaPagina(){ 
     }
 }
