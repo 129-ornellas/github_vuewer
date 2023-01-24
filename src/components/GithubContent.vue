@@ -2,6 +2,7 @@
     <div>
       <v-row>
         <v-col cols="12">
+            <h2 v-if="repo">{{ repo.name+'/' +contentAtual }}</h2>
             <v-simple-table>
               <template v-slot:default>
                 <thead>
@@ -40,11 +41,11 @@
       props: ['repo'],
       data: () => ({
         contents: [],
-        diretorio: '',
         loading: false,
         temmais: false,
         currentPage: 1,
-        novoContent: []
+        novoContent: [],
+        contentAtual: '',
       }),
       methods: {
         async listaContent(){
@@ -57,6 +58,7 @@
             this.loading = true
             this.contents = await api.abreDir(this.repo.owner.login, this.repo.name, caminho)
             this.novoContent.push(caminho)
+            this.contentAtual = caminho
             this.loading = false
         },
         async voltarDir() {
@@ -71,6 +73,7 @@
               this.repo.name,
               antigoContent
             );
+            this.contentAtual = antigoContent
             this.loading = false;
         }       
       },
