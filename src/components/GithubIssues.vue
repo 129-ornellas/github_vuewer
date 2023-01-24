@@ -6,14 +6,14 @@
               <template v-slot:default>
                 <thead>
                   <tr>
-                    <th class="text-left">Number</th>
                     <th class="text-left">Title</th>
+                    <th class="text-left">Number</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr v-for="issue in issues" :key="issue.number">
-                    <td>{{ issue.number }}</td>
                     <td>{{ issue.title }}</td>
+                    <td>{{ issue.number }}</td>
                   </tr>
                 </tbody>
               </template>

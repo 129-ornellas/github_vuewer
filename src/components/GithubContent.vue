@@ -6,16 +6,16 @@
             <v-simple-table>
               <template v-slot:default>
                 <thead>
-                  <tr>
-                    <th class="text-left">Arquivo/Pasta</th>
-                    <th class="text-left">Title</th>
-                  </tr>
+                    <tr>
+                        <th class="text-left">Arquivo/Pasta</th>
+                        <th class="text-left">Title</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="content in contents" :key="content.number">
-                    <td>{{ content.name }}</td>
-                    <td v-if="content.type == 'dir'"><v-btn @click="abreDir(content)">abra</v-btn></td>
-                </tr>
+                    <tr v-for="content in contents" :key="content.number">
+                        <td v-if="content.type == 'dir'"><a @click="abreDir(content)" >{{ content.name }} </a></td>
+                        <td v-else>{{ content.name }}</td>
+                    </tr>
                 </tbody>
               </template>
           </v-simple-table>
@@ -85,4 +85,8 @@
         }
       }
   </script>
-  
+<style>
+.button {
+    text-decoration: underline;
+}
+</style>
